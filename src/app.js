@@ -3,16 +3,17 @@ import './styles/index.css';
 import { renderLayout } from './components/layout.js';
 import { renderPlanets } from './views/planets.js';
 import { renderOutposts } from './views/outposts.js';
-import { renderUpgrades } from './views/upgrades.js';
 import { renderManufacturing } from './views/manufacturing.js';
 import { renderTrade } from './views/trade.js';
-
+import { renderTips } from './views/tips.js';
+import { renderNextSteps } from './views/nextsteps.js';
 const VIEWS = {
   planets: { render: renderPlanets, title: 'Planetary Resource Map' },
   outposts: { render: renderOutposts, title: 'Outpost Management' },
-  upgrades: { render: renderUpgrades, title: 'Upgrade Tracker' },
   manufacturing: { render: renderManufacturing, title: 'Manufacturing' },
-  trade: { render: renderTrade, title: 'Trade Routes' },
+  trade: { render: renderTrade, title: 'Trade Routes & Economics' },
+  tips: { render: renderTips, title: 'Tips & Guides' },
+  nextsteps: { render: renderNextSteps, title: 'Next Steps' },
 };
 
 const DEFAULT_VIEW = 'planets';

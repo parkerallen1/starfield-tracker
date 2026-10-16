@@ -2,27 +2,26 @@
 import {
   seedPlanets,
   seedOutposts,
-  seedUpgrades,
   seedManufacturing,
-  seedTrade,
 } from './seed.js';
 
 const STORAGE_PREFIX = 'starfield_';
 const COLLECTIONS = {
   planets: seedPlanets,
   outposts: seedOutposts,
-  upgrades: seedUpgrades,
   manufacturing: seedManufacturing,
-  trade: seedTrade,
 };
 
-// Initialize seed data on first load
+const SEED_VERSION = '3';
+
+// Initialize seed data, resetting if seed version changed
 function initStore() {
-  for (const [key, seed] of Object.entries(COLLECTIONS)) {
-    const storageKey = STORAGE_PREFIX + key;
-    if (!localStorage.getItem(storageKey)) {
-      localStorage.setItem(storageKey, JSON.stringify(seed));
+  const versionKey = STORAGE_PREFIX + 'seed_version';
+  if (localStorage.getItem(versionKey) !== SEED_VERSION) {
+    for (const [key, seed] of Object.entries(COLLECTIONS)) {
+      localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(seed));
     }
+    localStorage.setItem(versionKey, SEED_VERSION);
   }
 }
 
